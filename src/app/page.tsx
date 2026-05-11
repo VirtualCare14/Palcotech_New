@@ -81,9 +81,9 @@ export default async function Home() {
     ];
 
   const stats = homeContent?.stats ?? [
-    { label: "Years Experience", value: "15+" },
-    { label: "Happy Clients", value: "120+" },
-    { label: "Industrial Categories", value: "12" },
+    { label: "Years Experience", value: "35+" },
+    { label: "Happy Clients", value: "500+" },
+    { label: "Industrial Categories", value: "35+" },
   ];
 
   return (
@@ -96,11 +96,11 @@ export default async function Home() {
         heroSlides={heroSlides}
       />
 
-      <section className="bg-white/55 py-12 backdrop-blur-sm sm:py-20 lg:py-24">
+      <section className="bg-white py-12 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-2xl">
-              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-cyan-700 sm:text-xs">Hot products</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-cyan-700 sm:text-xs">TOP SELLING PRODUCTS</p>
               <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">Most requested items</h2>
             </div>
             <Link href="/products" className="text-sm font-bold text-sky-700 transition hover:text-sky-800 sm:text-base">
@@ -124,7 +124,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-white/75 py-12 backdrop-blur-sm sm:py-20 lg:py-24">
+      <section className="bg-white py-12 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-2xl">
@@ -152,54 +152,43 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="py-12 sm:py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-sky-50 p-6 shadow-sm sm:rounded-[2.5rem] sm:p-10 lg:p-16">
-            <div className="pointer-events-none absolute inset-0">
-              <div className="absolute -left-10 -top-10 h-48 w-48 rounded-full bg-cyan-400/15 blur-3xl" />
-              <div className="absolute -right-10 -bottom-10 h-56 w-56 rounded-full bg-sky-400/15 blur-3xl" />
-              <svg className="absolute inset-0 h-full w-full opacity-[0.2]" aria-hidden="true">
-                <defs>
-                  <pattern id="statsDots" width="36" height="36" patternUnits="userSpaceOnUse">
-                    <circle cx="2" cy="2" r="1.5" fill="rgba(2,132,199,0.25)" />
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#statsDots)" />
-              </svg>
-            </div>
+      <section className="relative overflow-hidden bg-[#00356b] py-16 sm:py-24 lg:py-32">
+        {/* Background Pattern */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.05]" />
+        </div>
 
-            <div className="relative">
-              <div className="text-center">
-                <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-sky-700 sm:text-xs">Our track record</p>
-                <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
-                  Numbers that build trust
-                </h2>
-              </div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-[20px] font-bold uppercase tracking-[0.4em] text-sky-200/70 sm:text-xl">
+              Our track record
+            </p>
+            <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              Numbers that build trust
+            </h2>
+          </div>
 
-              <div className="mt-10 grid gap-6 sm:grid-cols-3 sm:gap-4 lg:gap-8">
-                {stats.map((item: any) => (
-                  <div
-                    key={item.label}
-                    className="rounded-3xl border border-white/70 bg-white/70 p-6 text-center shadow-sm backdrop-blur sm:p-8"
-                  >
-                    <div className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-                      <span className="bg-gradient-to-r from-cyan-600 to-sky-600 bg-clip-text text-transparent">
-                        {item.value}
-                      </span>
-                    </div>
-                    <div className="mt-2 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-600 sm:text-xs">
-                      {item.label}
-                    </div>
-                    <div className="mt-4 h-1 w-10 rounded-full bg-gradient-to-r from-cyan-500 to-sky-500 mx-auto opacity-80" />
-                  </div>
-                ))}
+          <div className="mt-16 grid gap-6 sm:grid-cols-3 sm:gap-8 lg:gap-12">
+            {stats.map((item: any) => (
+              <div
+                key={item.label}
+                className="relative rounded-3xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-md transition-all hover:bg-white/10 hover:shadow-2xl hover:shadow-black/20"
+              >
+                <div className="text-5xl font-black tracking-tighter text-white sm:text-6xl lg:text-7xl">
+                  {item.value}
+                </div>
+                <div className="mt-4 text-[11px] font-bold uppercase tracking-[0.2em] text-sky-100/60 sm:text-xs">
+                  {item.label}
+                </div>
+                <div className="mt-6 h-1 w-12 rounded-full bg-accent mx-auto" />
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white/55 py-12 backdrop-blur-sm sm:py-20 lg:py-24">
+
+      <section className="bg-white py-12 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
             <div className="max-w-2xl">

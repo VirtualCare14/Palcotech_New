@@ -5,15 +5,12 @@
   --background: transparent;
   --foreground: #0b1220;
 
-  /* Site background (soft gradient) */
-  --site-bg: radial-gradient(1200px circle at 10% 0%, rgba(34, 211, 238, 0.22), transparent 55%),
-    radial-gradient(900px circle at 90% 20%, rgba(167, 139, 250, 0.18), transparent 55%),
-    radial-gradient(1000px circle at 60% 100%, rgba(56, 189, 248, 0.16), transparent 60%),
-    linear-gradient(135deg, #f8fbff 0%, #f3f8ff 45%, #f7fbff 100%);
+  /* Site background (Clean White) */
+  --site-bg: #ffffff;
 
   /* Reusable surface tokens (for glass / cards) */
-  --surface: rgba(255, 255, 255, 0.72);
-  --surface-strong: rgba(255, 255, 255, 0.86);
+  --surface: #ffffff;
+  --surface-strong: #ffffff;
   --surface-border: rgba(15, 23, 42, 0.10);
 
   /* Theme variables (Defaults, will be overridden by layout) */
@@ -60,17 +57,33 @@ html {
   }
 }
 
-.animated-gradient-text {
-  background-image: var(--animated-gradient);
-  background-size: 300% 300%;
+@keyframes shimmerWhite {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shimmer-white {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #cbd5e1 25%,
+    #ffffff 50%,
+    #cbd5e1 75%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: gradientShift 7s ease-in-out infinite;
+  animation: shimmerWhite 4s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animated-gradient-text {
+  .animated-gradient-text, .shimmer-white {
     animation: none;
     background-size: 100% 100%;
   }
@@ -84,33 +97,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Background glow blobs (decorative) */
-body::before,
-body::after {
-  content: "";
-  position: fixed;
-  inset: auto;
-  z-index: -1;
-  pointer-events: none;
-  width: 520px;
-  height: 520px;
-  border-radius: 999px;
-  filter: blur(54px);
-  opacity: 0.35;
-}
-
-body::before {
-  left: -180px;
-  top: 120px;
-  background: radial-gradient(circle at 30% 30%, var(--primary), transparent 65%);
-}
-
-body::after {
-  right: -220px;
-  bottom: 80px;
-  background: radial-gradient(circle at 30% 30%, var(--accent), transparent 65%);
 }
 
 /* Better text wrapping on modern browsers */

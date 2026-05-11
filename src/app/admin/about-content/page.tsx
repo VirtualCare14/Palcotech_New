@@ -71,45 +71,23 @@ export default async function AdminAboutContentPage() {
             </div>
 
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-              <div className="text-lg font-semibold text-slate-900">Top cards</div>
-              <p className="mt-1 text-sm text-slate-600">Order on website: Who we are → Mission → Vision</p>
+              <div className="text-lg font-semibold text-slate-900">Intro card</div>
+              <p className="mt-1 text-sm text-slate-600">This section appears after the banner.</p>
 
               <div className="mt-4 grid gap-4">
                 <div>
-                  <div className="text-sm font-medium text-slate-700">Who we are (rich text)</div>
+                  <div className="text-sm font-medium text-slate-700">Why Choose Us / Who we are (rich text)</div>
                   <div className="mt-1">
                     <RichTextEditor
                       name="whoWeAreHtml"
                       defaultValue={intro?.html || intro?.text || ""}
-                      placeholder="Write who we are…"
+                      placeholder="Write intro content…"
                     />
-                  </div>
-                </div>
-
-                <div className="grid gap-4 lg:grid-cols-2">
-                  <div>
-                    <div className="text-sm font-medium text-slate-700">Mission (rich text)</div>
-                    <div className="mt-1">
-                      <RichTextEditor
-                        name="missionHtml"
-                        defaultValue={missionVision?.missionHtml || missionVision?.mission || ""}
-                        placeholder="Write mission…"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium text-slate-700">Vision (rich text)</div>
-                    <div className="mt-1">
-                      <RichTextEditor
-                        name="visionHtml"
-                        defaultValue={missionVision?.visionHtml || missionVision?.vision || ""}
-                        placeholder="Write vision…"
-                      />
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
 
           <button className="mt-6 w-full rounded-xl bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-700">

@@ -18,7 +18,7 @@ export default async function ContactPage() {
 
         <div className="mt-8 grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <div className="rounded-2xl border border-slate-200/70 bg-white/75 p-6 shadow-sm backdrop-blur">
+            <div className="rounded-2xl border border-slate-200/70 bg-white p-6 shadow-sm">
               <div className="text-lg font-semibold text-slate-900">
                 Contact Details
               </div>
@@ -33,7 +33,7 @@ export default async function ContactPage() {
                   <div>
                     <span className="font-semibold text-slate-800">Phone:</span>{" "}
                     <a className="hover:text-sky-700" href={`tel:${siteConfig.phone}`}>
-                      {siteConfig.phone}
+                      +91 9811744979
                     </a>
                   </div>
                 ) : null}
@@ -76,7 +76,7 @@ export default async function ContactPage() {
                   />
                 </div>
               ) : (
-                <div className="mt-6 rounded-2xl border border-slate-200 bg-white/70 p-4 text-xs text-slate-500 backdrop-blur">
+                <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-4 text-xs text-slate-500">
                   Google Maps embed link can be added in <span className="font-semibold">src/config/site.ts</span>.
                 </div>
               )}

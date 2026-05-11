@@ -86,7 +86,7 @@ export default async function ProductsPage({
                 ))}
               </div>
             ) : (
-              <div className="rounded-2xl border border-slate-200/70 bg-white/75 p-8 text-sm text-slate-600 shadow-sm backdrop-blur">
+              <div className="rounded-2xl border border-slate-200/70 bg-white p-8 text-sm text-slate-600 shadow-sm">
                 {dbOk ? (
                   <>
                     No products found. Add products from{" "}

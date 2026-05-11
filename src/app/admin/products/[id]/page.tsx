@@ -4,6 +4,7 @@ import { connectToDatabase } from "@/lib/db";
 import { ProductModel } from "@/models/Product";
 import { CategoryModel } from "@/models/Category";
 import { updateProduct } from "@/actions/products";
+import { ProductImageManager } from "@/components/admin/ProductImageManager";
 
 export const dynamic = "force-dynamic";
 
@@ -85,15 +86,7 @@ export default async function EditProductPage({
               </select>
             </label>
 
-            <label className="block">
-              <div className="text-sm font-medium text-slate-700">Image URLs (comma separated)</div>
-              <input
-                name="imageUrls"
-                defaultValue={imageUrlsString}
-                className="mt-1 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none ring-sky-200 focus:ring"
-                placeholder="https://res.cloudinary.com/... , https://..."
-              />
-            </label>
+            <ProductImageManager defaultUrls={imageUrlsString} />
 
             <div className="grid gap-4 sm:grid-cols-2">
               {[
