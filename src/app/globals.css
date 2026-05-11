@@ -1,26 +1,137 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core colors */
+  --background: transparent;
+  --foreground: #0b1220;
+
+  /* Site background (soft gradient) */
+  --site-bg: radial-gradient(1200px circle at 10% 0%, rgba(34, 211, 238, 0.22), transparent 55%),
+    radial-gradient(900px circle at 90% 20%, rgba(167, 139, 250, 0.18), transparent 55%),
+    radial-gradient(1000px circle at 60% 100%, rgba(56, 189, 248, 0.16), transparent 60%),
+    linear-gradient(135deg, #f8fbff 0%, #f3f8ff 45%, #f7fbff 100%);
+
+  /* Reusable surface tokens (for glass / cards) */
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-strong: rgba(255, 255, 255, 0.86);
+  --surface-border: rgba(15, 23, 42, 0.10);
+
+  /* Theme variables (Defaults, will be overridden by layout) */
+  --primary: #0f172a;
+  --primary-foreground: #ffffff;
+  --accent: #f59e0b;
+  --accent-foreground: #0f172a;
+  --hero-overlay: rgba(0, 0, 0, 0.5);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --animated-gradient: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--accent) 50%,
+    var(--primary) 100%
+  );
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient-text {
+  background-image: var(--animated-gradient);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-gradient-text {
+    animation: none;
+    background-size: 100% 100%;
   }
 }
 
 body {
-  background: var(--background);
+  background: var(--site-bg);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Background glow blobs (decorative) */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  z-index: -1;
+  pointer-events: none;
+  width: 520px;
+  height: 520px;
+  border-radius: 999px;
+  filter: blur(54px);
+  opacity: 0.35;
+}
+
+body::before {
+  left: -180px;
+  top: 120px;
+  background: radial-gradient(circle at 30% 30%, var(--primary), transparent 65%);
+}
+
+body::after {
+  right: -220px;
+  bottom: 80px;
+  background: radial-gradient(circle at 30% 30%, var(--accent), transparent 65%);
+}
+
+/* Better text wrapping on modern browsers */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Optional display font (used in premium UI parts like product names) */
+.font-display {
+  font-family: var(--font-display), var(--font-sans), ui-sans-serif, system-ui, -apple-system,
+    Segoe UI, Roboto, Helvetica, Arial;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
