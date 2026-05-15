@@ -90,7 +90,7 @@ export function HeroSlider({
 
   return (
     <div className={cn("relative overflow-hidden w-full h-full", !isBackground && "rounded-[2.1rem]")}>
-      <div className={cn("relative w-full h-full", !isBackground && "aspect-[16/9] min-h-[260px] sm:min-h-[400px]")}>
+      <div className={cn("relative w-full h-full", !isBackground && "aspect-[4/3] min-h-[200px] sm:aspect-[16/9] sm:min-h-[400px]")}>
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={slide.src}
@@ -117,7 +117,7 @@ export function HeroSlider({
 
         {/* Navigation Dots Overlay */}
         {slides.length > 1 && (
-          <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-full bg-black/20 px-4 py-2 backdrop-blur-md z-10">
+          <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/20 px-3 py-2 backdrop-blur-md z-10 sm:bottom-10 sm:gap-3 sm:px-4 sm:py-2">
             {slides.map((_, i) => (
               <button
                 key={i}
@@ -126,8 +126,8 @@ export function HeroSlider({
                   setIndex(i);
                 }}
                 className={cn(
-                  "h-1.5 transition-all duration-300 rounded-full",
-                  i === index ? "w-8 bg-white" : "w-1.5 bg-white/40 hover:bg-white/60"
+                  "transition-all duration-300 rounded-full",
+                  i === index ? "h-2 w-8 bg-white sm:h-1.5 sm:w-8" : "h-2 w-2 bg-white/40 hover:bg-white/60 sm:h-1.5 sm:w-1.5"
                 )}
                 aria-label={`Go to slide ${i + 1}`}
               />

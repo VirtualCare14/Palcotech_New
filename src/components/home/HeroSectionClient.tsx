@@ -77,28 +77,28 @@ export function HeroSectionClient({
         </svg>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
-        <div className="grid items-center gap-10 lg:grid-cols-12">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+        <div className="grid items-center gap-6 lg:gap-10 lg:grid-cols-12">
           {/* Content first on mobile, right side on desktop */}
           <div className="order-1 lg:order-2 lg:col-span-5">
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="space-y-5"
+              className="space-y-4 sm:space-y-5"
             >
-              <div className="inline-flex items-center rounded-full border border-sky-200 bg-white/70 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.25em] text-sky-800 backdrop-blur sm:text-xs">
+              <div className="inline-flex items-center rounded-full border border-sky-200 bg-white/70 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-sky-800 backdrop-blur sm:px-4 sm:py-2 sm:text-[10px] sm:tracking-[0.25em]">
                 {heroTagline || "Trusted Industrial Partner"}
               </div>
 
-              <h1 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
+              <h1 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
                 <span className="bg-gradient-to-r from-sky-800 to-cyan-700 bg-clip-text text-transparent">
                   {(current?.title || heroHeading || "Palcotech Engineering").trim()}
                 </span>
               </h1>
 
               {current?.sub?.trim() ? (
-                <p className="text-sm leading-7 text-slate-600 sm:text-base">
+                <p className="text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
                   {current.sub}
                 </p>
               ) : null}
@@ -106,7 +106,7 @@ export function HeroSectionClient({
               <div className="pt-2">
                 <Link
                   href={heroCtaUrl}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-blue-900 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition hover:bg-blue-800 sm:w-auto"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-blue-900 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition hover:bg-blue-800 sm:w-auto sm:px-6 sm:py-3"
                 >
                   {heroCtaText}
                   <ArrowRight className="h-4 w-4" />
