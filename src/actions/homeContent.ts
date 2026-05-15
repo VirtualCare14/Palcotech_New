@@ -8,7 +8,7 @@ import { HomeContentModel } from "@/models/HomeContent";
 
 const Schema = z.object({
   heroHeading: z.string().optional(),
-  heroSubheadingHtml: z.string().optional(),
+  heroTagline: z.string().optional(),
   heroCtaText: z.string().optional(),
   heroCtaUrl: z.string().optional(),
 
@@ -97,7 +97,7 @@ export async function updateHomeContent(formData: FormData) {
       $set: {
         hero: {
           heading: parsed.data.heroHeading || "",
-          subheadingHtml: parsed.data.heroSubheadingHtml || "",
+          tagline: parsed.data.heroTagline || "",
           ctaText: parsed.data.heroCtaText || "",
           ctaUrl: parsed.data.heroCtaUrl || "",
           slides,

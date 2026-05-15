@@ -62,11 +62,8 @@ export default async function Home() {
   }
 
   const heroHeading = homeContent?.hero?.heading || "Palcotech Engineering";
-  const heroSubheadingHtml =
-    homeContent?.hero?.subheadingHtml ||
-    homeContent?.hero?.subheading ||
-    "We build and supply modern engineering solutions with professional service, fast delivery, and dependable quality.";
-  const heroCtaText = homeContent?.hero?.ctaText || "Get Quote";
+  const heroTagline = homeContent?.hero?.tagline || "Trusted Industrial Partner";
+  const heroCtaText = homeContent?.hero?.ctaText || "Request a Quote";
   const heroCtaUrl = homeContent?.hero?.ctaUrl || "/contact";
 
   const whyCards =
@@ -90,7 +87,7 @@ export default async function Home() {
     <div className="bg-transparent overflow-hidden">
       <HeroSectionClient
         heroHeading={heroHeading}
-        heroSubheadingHtml={heroSubheadingHtml}
+        heroTagline={heroTagline}
         heroCtaText={heroCtaText}
         heroCtaUrl={heroCtaUrl}
         heroSlides={heroSlides}

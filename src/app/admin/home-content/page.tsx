@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getHomeContent } from "@/lib/data";
 import { updateHomeContent } from "@/actions/homeContent";
-import { RichTextEditor } from "@/components/admin/RichTextEditor";
 import { CloudinaryUploader } from "@/components/admin/CloudinaryUploader";
 
 export const dynamic = "force-dynamic";
@@ -25,7 +24,7 @@ export default async function AdminHomeContentPage() {
           <div>
             <h1 className="text-2xl font-semibold text-slate-900">Homepage Content</h1>
             <p className="mt-1 text-sm text-slate-600">
-              Update hero heading, slider images, stats and Why Choose Us blocks.
+              Update hero text (tagline/title), slider images, stats and Why Choose Us blocks.
             </p>
           </div>
           <Link className="text-sm font-semibold text-sky-700 hover:text-sky-800" href="/admin">
@@ -44,16 +43,15 @@ export default async function AdminHomeContentPage() {
               />
             </label>
 
-            <div className="sm:col-span-2">
-              <div className="text-sm font-medium text-slate-700">Hero subheading (rich text)</div>
-              <div className="mt-1">
-                <RichTextEditor
-                  name="heroSubheadingHtml"
-                  defaultValue={hero?.subheadingHtml || hero?.subheading || ""}
-                  placeholder="Write hero subheading…"
-                />
-              </div>
-            </div>
+            <label className="block sm:col-span-2">
+              <div className="text-sm font-medium text-slate-700">Hero tagline</div>
+              <input
+                name="heroTagline"
+                defaultValue={hero?.tagline || "Trusted Industrial Partner"}
+                className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm outline-none ring-sky-200 focus:ring"
+                placeholder="Trusted Industrial Partner"
+              />
+            </label>
 
             <label className="block">
               <div className="text-sm font-medium text-slate-700">CTA text</div>
@@ -112,7 +110,7 @@ export default async function AdminHomeContentPage() {
                           />
                         </label>
                         <label className="block">
-                          <div className="text-xs font-semibold text-slate-600">Sub text</div>
+                          <div className="text-xs font-semibold text-slate-600">Product details</div>
                           <input
                             name={`heroSlide${n}Sub`}
                             defaultValue={s?.sub || ""}

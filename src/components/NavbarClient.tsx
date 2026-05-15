@@ -66,26 +66,26 @@ export function NavbarClient({
             "mx-auto max-w-7xl flex items-center justify-between gap-3 px-2 transition-all duration-300"
           )}
         >
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative h-11 w-11 overflow-hidden rounded-xl border border-slate-100 bg-slate-50 transition-transform group-hover:scale-105">
+          <Link href="/" className="flex items-center group">
+            <div
+              className={cn(
+                "relative overflow-hidden",
+                scrolled ? "h-9 w-40 sm:w-44" : "h-10 w-44 sm:h-11 sm:w-52",
+              )}
+            >
               {hasLogo ? (
                 <Image
                   src={logoUrl!}
                   alt={`${companyName} logo`}
                   fill
-                  className="object-contain p-1"
+                  priority
+                  className="object-contain"
                 />
               ) : (
-                <div className="grid h-full w-full place-items-center bg-primary text-white text-sm font-bold">
+                <div className="grid h-full w-full place-items-center rounded-xl bg-slate-900 text-sm font-bold text-white">
                   {companyName.charAt(0)}
                 </div>
               )}
-            </div>
-            <div className="leading-tight">
-              <div className="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors">
-                {companyName}
-              </div>
-              <div className="text-[11px] uppercase tracking-widest text-slate-500 font-bold">Engineering Solutions</div>
             </div>
           </Link>
 

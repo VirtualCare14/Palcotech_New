@@ -40,7 +40,7 @@ export default async function RootLayout({
   const categories = await getNavbarCategories().catch(() => []);
 
   const companyName = settings?.companyName || siteConfig.companyName;
-  const logoUrl = settings?.logoUrl || siteConfig.logoUrl;
+  const logoUrl = siteConfig.logoUrl;
   const phones: string[] = (settings?.phones?.length ? settings.phones : [siteConfig.phone]).filter(Boolean);
 
   const whatsappNumber = settings?.whatsappNumber || siteConfig.whatsappNumber;

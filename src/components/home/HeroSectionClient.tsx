@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
-import { BadgeCheck, ShieldCheck, Truck, Headphones, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { HeroSlider, type HeroSlide } from "./HeroSlider";
 import { motion } from "framer-motion";
 
 interface HeroSectionClientProps {
   heroHeading: string;
-  heroSubheadingHtml: string;
+  heroTagline: string;
   heroCtaText: string;
   heroCtaUrl: string;
   heroSlides: HeroSlide[];
@@ -16,107 +16,114 @@ interface HeroSectionClientProps {
 
 export function HeroSectionClient({
   heroHeading,
-  heroSubheadingHtml,
+  heroTagline,
   heroCtaText,
   heroCtaUrl,
   heroSlides,
 }: HeroSectionClientProps) {
+  const [active, setActive] = useState(0);
 
-  const features = [
-    { icon: ShieldCheck, title: "ISO Certified", desc: "Standardized quality", color: "bg-blue-500/10 text-blue-600" },
-    { icon: Truck, title: "Fast Delivery", desc: "Pan-India support", color: "bg-amber-500/10 text-amber-600" },
-    { icon: Headphones, title: "Expert Support", desc: "24/7 technical help", color: "bg-emerald-500/10 text-emerald-600" },
-    { icon: CheckCircle2, title: "Genuine Parts", desc: "100% original", color: "bg-purple-500/10 text-purple-600" },
-  ];
+  const fallbackSlides = useMemo<HeroSlide[]>(
+    () => [
+      {
+        src: "/images/slider/slide-1.svg",
+        title: "Premium Engineering Products",
+        sub: "Quality-focused manufacturing and dependable delivery.",
+      },
+      {
+        src: "/images/slider/slide-2.svg",
+        title: "Reliable Industrial Solutions",
+        sub: "Built for performance, safety and long life.",
+      },
+      {
+        src: "/images/slider/slide-3.svg",
+        title: "Fast Support & Service",
+        sub: "Quick responses and customer-first approach.",
+      },
+      {
+        src: "/images/slider/slide-4.svg",
+        title: "Pan-India Supply",
+        sub: "Trusted products for multiple industries and cities.",
+      },
+    ],
+    [],
+  );
+
+  const slides = useMemo(
+    () => (heroSlides?.length ? heroSlides : fallbackSlides),
+    [heroSlides, fallbackSlides],
+  );
+
+  const current = slides[Math.min(active, Math.max(0, slides.length - 1))];
+
+  const onSlideChange = useCallback((i: number) => {
+    setActive(i);
+  }, []);
 
   return (
-    <section 
-      id="hero-section"
-      className="relative min-h-[90vh] flex items-center overflow-hidden bg-white"
-    >
-      {/* Background Slider */}
-      <div className="absolute inset-0 z-0">
-        <HeroSlider slides={heroSlides} isBackground />
-
-        
-        {/* Updated Overlay: Dark gradient from the left only */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-slate-950/85 via-slate-900/40 to-transparent lg:from-slate-950/80" />
+    <section id="hero-section" className="relative overflow-hidden">
+      {/* Light blue theme background */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-white to-cyan-50" />
+        <div className="absolute -left-28 top-14 h-72 w-72 rounded-full bg-sky-300/25 blur-3xl" />
+        <div className="absolute -right-28 bottom-10 h-80 w-80 rounded-full bg-cyan-300/25 blur-3xl" />
+        <svg className="absolute inset-0 h-full w-full opacity-[0.25]" aria-hidden="true">
+          <defs>
+            <pattern id="heroDots" width="32" height="32" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="1.25" fill="rgba(2, 132, 199, 0.22)" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#heroDots)" />
+        </svg>
       </div>
 
-      <div className="relative z-10 w-full pt-20 pb-12 sm:pt-24 lg:pt-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl">
-            {/* Top Badge */}
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.25em] text-white backdrop-blur-md mb-6 sm:px-4 sm:py-2 sm:text-[10px] sm:mb-8"
-            >
-              <BadgeCheck className="h-3.5 w-3.5 text-accent sm:h-4 sm:w-4" />
-              Trusted Industrial Partner
-            </motion.div>
-
-            {/* Main Heading */}
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl mb-6 leading-[1.1] sm:mb-8"
-            >
-              {heroHeading}
-            </motion.h1>
-
-            {/* Subheading */}
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+        <div className="grid items-center gap-10 lg:grid-cols-12">
+          {/* Content first on mobile, right side on desktop */}
+          <div className="order-1 lg:order-2 lg:col-span-5">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="prose max-w-2xl text-base leading-relaxed text-slate-200 mb-8 font-medium sm:text-lg sm:mb-10 lg:text-xl"
-              dangerouslySetInnerHTML={{ __html: heroSubheadingHtml }}
-            />
-
-            {/* CTAs */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col gap-3 sm:flex-row sm:gap-4 mb-12 sm:mb-16"
+              transition={{ duration: 0.5 }}
+              className="space-y-5"
             >
-              <Link
-                href={heroCtaUrl}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-8 py-3.5 text-sm font-bold text-white shadow-xl shadow-primary/20 transition hover:scale-105 active:scale-95 sm:rounded-2xl sm:px-10 sm:py-4"
-              >
-                {heroCtaText}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/products"
-                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-8 py-3.5 text-sm font-bold text-white backdrop-blur-md transition hover:bg-white/20 active:scale-95 sm:rounded-2xl sm:px-8 sm:py-4"
-              >
-                Explore Catalog
-              </Link>
-            </motion.div>
+              <div className="inline-flex items-center rounded-full border border-sky-200 bg-white/70 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.25em] text-sky-800 backdrop-blur sm:text-xs">
+                {heroTagline || "Trusted Industrial Partner"}
+              </div>
 
-            {/* Features Row - Fully Responsive */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mt-8 border-t border-white/10 pt-8 sm:mt-12 sm:pt-10">
-              {features.map((item, idx) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.4 + idx * 0.1 }}
-                  className="group relative flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3 shadow-sm backdrop-blur-sm transition-all hover:bg-white/10 sm:gap-4 sm:rounded-2xl sm:p-4"
+              <h1 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
+                <span className="bg-gradient-to-r from-sky-800 to-cyan-700 bg-clip-text text-transparent">
+                  {(current?.title || heroHeading || "Palcotech Engineering").trim()}
+                </span>
+              </h1>
+
+              {current?.sub?.trim() ? (
+                <p className="text-sm leading-7 text-slate-600 sm:text-base">
+                  {current.sub}
+                </p>
+              ) : null}
+
+              <div className="pt-2">
+                <Link
+                  href={heroCtaUrl}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-blue-900 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-900/20 transition hover:bg-blue-800 sm:w-auto"
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white sm:h-10 sm:w-10 sm:rounded-xl">
-                    <item.icon className="h-4 w-4 text-accent sm:h-5 sm:w-5" />
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="text-[11px] font-bold text-white uppercase tracking-wider truncate sm:text-xs">{item.title}</h3>
-                    <p className="text-[9px] text-slate-300 font-bold whitespace-nowrap truncate sm:text-[10px]">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
+                  {heroCtaText}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Slider frame (left side on desktop) */}
+          <div className="order-2 lg:order-1 lg:col-span-7">
+            <div className="relative">
+              <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-sky-500/25 via-cyan-500/15 to-indigo-500/15 blur-2xl" />
+              <div className="relative rounded-[2.25rem] bg-gradient-to-br from-sky-300/35 via-white/40 to-cyan-300/25 p-px shadow-xl">
+                <div className="rounded-[2.25rem] border border-white/70 bg-white/70 p-2 backdrop-blur sm:p-3">
+                  <HeroSlider slides={slides} onSlideChange={onSlideChange} isBackground={false} />
+                </div>
+              </div>
             </div>
           </div>
         </div>

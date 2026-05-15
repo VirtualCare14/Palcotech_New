@@ -10,5 +10,5 @@ export const siteConfig = {
   workingHours: "Mon–Sat 10:00–18:00",
   googleMapsEmbedUrl: "",
 
-  logoUrl: "/images/logo/logo.svg",
+  logoUrl: "/assets/palcotech-logo.png",
 };
