@@ -12,7 +12,7 @@ const Schema = z.object({
   heroCtaText: z.string().optional(),
   heroCtaUrl: z.string().optional(),
 
-  // Fixed 4 hero slides editor (each slide has imageUrl + title + sub)
+  // Fixed 7 hero slides editor (each slide has imageUrl + title + sub)
   heroSlide1ImageUrl: z.string().optional(),
   heroSlide1Title: z.string().optional(),
   heroSlide1Sub: z.string().optional(),
@@ -25,6 +25,15 @@ const Schema = z.object({
   heroSlide4ImageUrl: z.string().optional(),
   heroSlide4Title: z.string().optional(),
   heroSlide4Sub: z.string().optional(),
+  heroSlide5ImageUrl: z.string().optional(),
+  heroSlide5Title: z.string().optional(),
+  heroSlide5Sub: z.string().optional(),
+  heroSlide6ImageUrl: z.string().optional(),
+  heroSlide6Title: z.string().optional(),
+  heroSlide6Sub: z.string().optional(),
+  heroSlide7ImageUrl: z.string().optional(),
+  heroSlide7Title: z.string().optional(),
+  heroSlide7Sub: z.string().optional(),
 
   // Stats (3 blocks)
   stat1Value: z.string().optional(),
@@ -72,6 +81,9 @@ export async function updateHomeContent(formData: FormData) {
     slide(parsed.data.heroSlide2ImageUrl, parsed.data.heroSlide2Title, parsed.data.heroSlide2Sub),
     slide(parsed.data.heroSlide3ImageUrl, parsed.data.heroSlide3Title, parsed.data.heroSlide3Sub),
     slide(parsed.data.heroSlide4ImageUrl, parsed.data.heroSlide4Title, parsed.data.heroSlide4Sub),
+    slide(parsed.data.heroSlide5ImageUrl, parsed.data.heroSlide5Title, parsed.data.heroSlide5Sub),
+    slide(parsed.data.heroSlide6ImageUrl, parsed.data.heroSlide6Title, parsed.data.heroSlide6Sub),
+    slide(parsed.data.heroSlide7ImageUrl, parsed.data.heroSlide7Title, parsed.data.heroSlide7Sub),
   ].filter(Boolean);
 
   const stats = [

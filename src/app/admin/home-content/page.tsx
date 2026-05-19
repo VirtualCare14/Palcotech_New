@@ -74,7 +74,7 @@ export default async function AdminHomeContentPage() {
             <div className="sm:col-span-2 rounded-2xl border border-slate-200 bg-slate-50 p-4">
               <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <div className="text-sm font-semibold text-slate-900">Hero slider (4 images)</div>
+                  <div className="text-sm font-semibold text-slate-900">Hero slider (7 images)</div>
                   <p className="mt-1 text-xs text-slate-600">
                     Upload from your computer (Cloudinary) and paste/select the URL into each slide.
                   </p>
@@ -86,7 +86,7 @@ export default async function AdminHomeContentPage() {
               </div>
 
               <div className="mt-5 grid gap-4">
-                {[1, 2, 3, 4].map((n) => {
+                {[1, 2, 3, 4, 5, 6, 7].map((n) => {
                   const s = slideAt(n - 1);
                   return (
                     <div key={n} className="rounded-2xl border border-slate-200 bg-white p-4">
